@@ -105,5 +105,3 @@ sudo systemctl status infrasonar-acsls-agent
 ```bash
 journalctl -u infrasonar-acsls-agent
 ```
-
-# acsls-agent
