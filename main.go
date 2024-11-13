@@ -41,7 +41,18 @@ func main() {
 		Fn:              CheckAcsss,
 	}
 	go checkAcsss.Plan(quit)
-
+	// Create and plan checks
+	checkLibCmd := libagent.Check{
+		Key:             "libCmd",
+		Collector:       collector,
+		Asset:           asset,
+		IntervalEnv:     "CHECK_LIB_CMD_INTERVAL",
+		DefaultInterval: 300,
+		NoCount:         false,
+		SetTimestamp:    false,
+		Fn:              CheckLibCmd,
+	}
+	go checkLibCmd.Plan(quit)
 	// Wait for quit
 	<-quit
 }

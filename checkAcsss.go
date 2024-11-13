@@ -18,7 +18,9 @@ func CheckAcsss(_ *libagent.Check) (map[string][]map[string]any, error) {
 	}
 	out, err := exec.Command("bash", "-c", acsssStatusExec).Output()
 
-	status := map[string]any{}
+	status := map[string]any{
+		"name": "status",
+	}
 
 	if err == nil {
 		lines := reSplit.Split(string(out), -1)
@@ -39,7 +41,7 @@ func CheckAcsss(_ *libagent.Check) (map[string][]map[string]any, error) {
 			case "surrogate:":
 				status["surrogate"] = fields[1]
 			case "rmi-registry:":
-				status["rmi-registry"] = fields[1]
+				status["rmiRegistry"] = fields[1]
 			case "acsdb:":
 				status["acsdb"] = fields[1]
 			case "smce:":
