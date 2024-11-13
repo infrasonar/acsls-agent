@@ -20,7 +20,7 @@ func CheckLibCmd(_ *libagent.Check) (map[string][]map[string]any, error) {
 	}
 	out, err := exec.Command("bash", "-c", libCmdPhysicalExec).Output()
 
-	var matches []string = nil
+	var matches []string
 
 	lsms := []map[string]any{}
 	caps := []map[string]any{}
@@ -77,7 +77,6 @@ func CheckLibCmd(_ *libagent.Check) (map[string][]map[string]any, error) {
 					"availability": matches[7],
 				})
 			}
-
 		}
 	} else {
 		log.Printf("Failed to execute: bash -c \"%v\" (%v)\n", libCmdPhysicalExec, err)
