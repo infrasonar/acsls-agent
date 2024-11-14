@@ -1,0 +1,52 @@
+#!/bin/bash
+#
+# chkconfig: 2345 90 12
+# description: InfraSonar ACSLS Agent
+#
+
+# Get function from functions library
+. /etc/init.d/functions
+
+# Start the InfraSonar ACSLS Agent
+start() {
+        initlog -c "echo -n Starting InfraSonar ACSLS Agent: "
+        export PATH="$PATH:/export/home/ACSSS/bin"
+        export TOKEN=<TOKEN>
+        export ASSET_ID=<ASSET_ID>
+        su - acsss -c -p "/usr/bin/acsls-agent" &
+        ### Create the lock file ###
+        touch /var/lock/subsys/acsls-agent
+        success $"InfraSonar ACSLS Agent startup"
+        echo
+}
+
+# Restart the InfraSonar ACSLS Agent
+stop() {
+        initlog -c "echo -n Stopping InfraSonar ACSLS Agent: "
+        killproc acsls-agent
+        ### Now, delete the lock file ###
+        rm -f /var/lock/subsys/acsls-agent
+        echo
+}
+
+### main logic ###
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  status)
+        status acsls-agent
+        ;;
+  restart|reload|condrestart)
+        stop
+        start
+        ;;
+  *)
+        echo $"Usage: $0 {start|stop|restart|reload|status}"
+        exit 1
+esac
+
+exit 0
