@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"log"
 	"os"
 	"os/exec"
@@ -66,8 +65,8 @@ func CheckAcsss(_ *libagent.Check) (map[string][]map[string]any, error) {
 	}}
 
 	// Print debug dump
-	b, _ := json.MarshalIndent(state, "", "    ")
-	log.Fatal(string(b))
+	// b, _ := json.MarshalIndent(state, "", "    ")
+	// log.Fatal(string(b))
 
 	return state, nil
 }

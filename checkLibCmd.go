@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"os"
@@ -89,8 +88,8 @@ func CheckLibCmd(_ *libagent.Check) (map[string][]map[string]any, error) {
 	state["CAP"] = caps
 
 	// Print debug dump
-	b, _ := json.MarshalIndent(state, "", "    ")
-	log.Fatal(string(b))
+	// b, _ := json.MarshalIndent(state, "", "    ")
+	// log.Fatal(string(b))
 
 	return state, nil
 }

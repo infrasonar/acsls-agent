@@ -26,12 +26,23 @@ Environment                 | Default                               | Descriptio
 CGO_ENABLED=0 go build -trimpath -o acsls-agent
 ```
 
+Or, solaris build:
+```
+GOOS=solaris GOARCH=amd64 CGO_ENABLED=0 go build -trimpath -o acsls-agent.solaris-amd64
+```
+
 ## Installation
 
 Download the latest release:
 ```bash
-wget https://github.com/infrasonar/acsls-agent/releases/download/v0.1.0/acsls-agent
+wget https://github.com/infrasonar/acsls-agent/releases/download/v0.1.1/acsls-agent
 ```
+
+Or, solaris:
+```bash
+wget https://github.com/infrasonar/acsls-agent/releases/download/v0.1.1/acsls-agent.solaris-amd64
+```
+
 
 > _The pre-build binary is build for the **acsls-amd64** platform. For other platforms build from source using the command:_ `CGO_ENABLED=0 go build -o acsls-agent`
 
